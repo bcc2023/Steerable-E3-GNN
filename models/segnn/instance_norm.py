@@ -98,7 +98,9 @@ class InstanceNorm(nn.Module):
                 
 
                 # Subtract the mean
-                field = field - field_mean[batch]
+                #field = field - field_mean[batch]
+                field = field - field_mean
+
 
             # Then compute the rescaling factor (norm of each feature vector)
             # Rescaling of the norms themselves based on the option "normalization"
