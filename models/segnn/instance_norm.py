@@ -70,17 +70,18 @@ class InstanceNorm(nn.Module):
         ix = 0
         iw = 0
         ib = 0
-        print("batch", batch.shape)
+        # print("batch", batch.shape)
 
         for mul, ir in self.irreps:  # mul is the multiplicity (number of copies) of some irrep type (ir)
             d = ir.dim
             field = input[:, ix: ix + mul * d]  # [batch * sample, mul * repr]
-            print("field shape", field.shape) # field shape torch.Size([2333, 36])
+            # print("field shape", field.shape) # field shape torch.Size([2333, 36])
             ix += mul * d
 
             # [batch * sample, mul, repr]
-            field = field.reshape(-1, mul, d)
-            print("field shape", field.shape) # field shape torch.Size([2333, 36, 1])
+            # field = field.reshape(-1, mul, d)
+            field = field.reshape(-1, mul)
+            # print("field shape", field.shape) # field shape torch.Size([2333, 36, 1])
 
             # For scalars first compute and subtract the mean
             if ir.l == 0:
