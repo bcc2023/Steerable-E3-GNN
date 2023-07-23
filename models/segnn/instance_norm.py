@@ -82,6 +82,11 @@ class InstanceNorm(nn.Module):
             # For scalars first compute and subtract the mean
             if ir.l == 0:
                 # Compute the mean
+
+                print("In instance_norm")
+                print("field shape", field.shape)
+                print("batch", batch)
+
                 field_mean = global_mean_pool(field, batch).reshape(-1, mul, 1)  # [batch, mul, 1]]
                 # Subtract the mean
                 field = field - field_mean[batch]
