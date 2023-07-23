@@ -86,23 +86,24 @@ class InstanceNorm(nn.Module):
             if ir.l == 0:
                 # Compute the mean
 
-                print("In instance_norm")
-                print("field shape", field.shape)
-                print("batch shape", batch.shape)
-                print("batch value", batch)
+                # print("In instance_norm")
+                # print("field shape", field.shape)
+                # print("batch shape", batch.shape)
+                # print("batch value", batch)
 
-                field_tensor_size = (2325, 36, 1)
-                field = torch.rand(*field_tensor_size)
+                # field_tensor_size = (2325, 36, 1)
+                # field = torch.rand(*field_tensor_size)
 
-                batch_tensor_size = (2325,)
-                batch = torch.randint(0, 128, batch_tensor_size)
-                batch, _ = torch.sort(batch)
+                # batch_tensor_size = (2325,)
+                # batch = torch.randint(0, 128, batch_tensor_size)
+                # batch, _ = torch.sort(batch)
 
 
                 field_mean = global_mean_pool(field, batch)  # [batch, mul, 1]]
-                print("field_mean.shape", field_mean)
+                # print("field_mean.shape", field_mean)
 
-                field_mean = field_mean.reshape(-1, mul, 1)  # [batch, mul, 1]]
+                # field_mean = field_mean.reshape(-1, mul, 1)  # [batch, mul, 1]]
+                field_mean = field_mean.reshape(-1, mul)  # [batch, mul, 1]]
                 
 
                 # Subtract the mean
