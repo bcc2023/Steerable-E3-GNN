@@ -70,14 +70,17 @@ class InstanceNorm(nn.Module):
         ix = 0
         iw = 0
         ib = 0
+        print("batch", batch.shape)
 
         for mul, ir in self.irreps:  # mul is the multiplicity (number of copies) of some irrep type (ir)
             d = ir.dim
             field = input[:, ix: ix + mul * d]  # [batch * sample, mul * repr]
+            print("field shape", field.shape)
             ix += mul * d
 
             # [batch * sample, mul, repr]
             field = field.reshape(-1, mul, d)
+            print("field shape", field.shape)
 
             # For scalars first compute and subtract the mean
             if ir.l == 0:
@@ -85,7 +88,7 @@ class InstanceNorm(nn.Module):
 
                 print("In instance_norm")
                 print("field shape", field.shape)
-                print("batch", batch)
+                print("batch", batch.shape)
 
                 field_mean = global_mean_pool(field, batch).reshape(-1, mul, 1)  # [batch, mul, 1]]
                 # Subtract the mean
