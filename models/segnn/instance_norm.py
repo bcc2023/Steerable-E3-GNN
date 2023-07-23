@@ -91,6 +91,14 @@ class InstanceNorm(nn.Module):
                 print("batch shape", batch.shape)
                 print("batch value", batch)
 
+                field_tensor_size = (2325, 36, 1)
+                field = torch.rand(*field_tensor_size)
+
+                batch_tensor_size = (2325,)
+                batch = torch.randint(0, 128, batch_tensor_size)
+                batch, _ = torch.sort(batch)
+
+
                 field_mean = global_mean_pool(field, batch)  # [batch, mul, 1]]
                 print("field_mean.shape", field_mean)
 
@@ -98,8 +106,8 @@ class InstanceNorm(nn.Module):
                 
 
                 # Subtract the mean
-                #field = field - field_mean[batch]
-                field = field - field_mean
+                field = field - field_mean[batch]
+
 
 
             # Then compute the rescaling factor (norm of each feature vector)
