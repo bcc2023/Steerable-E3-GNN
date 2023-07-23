@@ -88,7 +88,8 @@ class InstanceNorm(nn.Module):
 
                 print("In instance_norm")
                 print("field shape", field.shape)
-                print("batch", batch.shape)
+                print("batch shape", batch.shape)
+                print("batch value", batch)
 
                 field_mean = global_mean_pool(field, batch).reshape(-1, mul, 1)  # [batch, mul, 1]]
                 # Subtract the mean
